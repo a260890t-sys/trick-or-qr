@@ -67,7 +67,7 @@ const $ = id => document.getElementById(id);
 try{
   const u = new URL(location.href);
   if(u.searchParams.get("reset") === "1"){
-    localStorage.setItem("trickqr_stamps_v1", JSON.stringify([false,false,false,false,false]));
+    localStorage.setItem("trickqr_stamps_v2", JSON.stringify([false,false,false,false,false])); localStorage.removeItem("trickqr_stamps_v1");
     u.searchParams.delete("reset");
     history.replaceState(null, "", u.pathname + u.search + u.hash);
   }
@@ -123,7 +123,7 @@ try{
   // 「最初からやり直す」：確認ダイアログでOKならスタンプを0個に戻す
   $("henReset").addEventListener("click", ()=>{
     if(!window.confirm("スタンプを0個に戻して、最初からやり直しますか？\n（集めたスタンプは消えます）")) return;
-    try{ localStorage.setItem("trickqr_stamps_v1", JSON.stringify([false,false,false,false,false])); }catch(e){}
+    try{ localStorage.setItem("trickqr_stamps_v2", JSON.stringify([false,false,false,false,false])); localStorage.removeItem("trickqr_stamps_v1"); }catch(e){}
     clearT();
     img.className = ""; img.src = HEN.base;
     cap.className = "hencap"; cap.textContent = "スタンプをリセットしたよ";
